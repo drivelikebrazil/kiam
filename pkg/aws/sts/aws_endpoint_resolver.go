@@ -42,7 +42,9 @@ func regionalHostname(region string) (string, error) {
 
 	// iso regions are airgapped, https://github.com/uswitch/kiam/issues/410 has more context
 	// but just follows a different pattern
-	if strings.HasPrefix(region, "us-iso") {
+	if strings.HasPrefix(region, "us-isob"){
+		hostname = fmt.Sprintf("sts.%s.sc2s.sgov.gov", region)
+	} else if strings.HasPrefix(region, "us-iso") {
 		hostname = fmt.Sprintf("sts.%s.c2s.ic.gov", region)
 	}
 
